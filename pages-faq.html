@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>NexaTech F.A.Q </title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/quill/quill.snow.css" rel="stylesheet">
+  <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
+  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+
+ 
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="header fixed-top d-flex align-items-center">
+
+    <div class="d-flex align-items-center justify-content-between">
+      <a href="homepage.html" class="logo d-flex align-items-center">
+        <img src="assets/img/logo.png" alt="">
+        <span class="d-none d-lg-block">NexaTech</span>
+      </a>
+      <i class="bi bi-list toggle-sidebar-btn"></i>
+    </div><!-- End Logo -->
+
+    <div class="search-bar">
+      <form class="search-form d-flex align-items-center" method="POST" action="#">
+        <input type="text" name="query" placeholder="Search" title="Enter search keyword" id="searchInput">
+        <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+      </form>
+    </div><!-- End Search Bar -->
+    <script>
+      document.querySelector('.search-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+        const query = document.querySelector('#searchInput').value.toLowerCase();
+        const content = document.body.innerHTML;
+    
+        // Remove previous highlights
+        document.body.innerHTML = content.replace(/<mark class="highlight">|<\/mark>/g, '');
+    
+        if (query) {
+          const regex = new RegExp(`(${query})`, 'gi');
+          document.body.innerHTML = document.body.innerHTML.replace(regex, '<mark class="highlight">$1</mark>');
+        }
+      });
+    </script>
+    
+    <style>
+      mark.highlight {
+        background-color: rgba(255, 255, 0, 0.479);
+        color: black;
+      }
+    </style>
+
+    <nav class="header-nav ms-auto">
+      <ul class="d-flex align-items-center">
+
+        <li class="nav-item d-block d-lg-none">
+          <a class="nav-link nav-icon search-bar-toggle " href="#">
+            <i class="bi bi-search"></i>
+          </a>
+        </li><!-- End Search Icon-->
+
+        
+        <li class="nav-item dropdown pe-3">
+
+          <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+            <img src="assets/img/profile-img.png" alt="Profile" class="rounded-circle">
+            <span class="d-none d-md-block dropdown-toggle ps-2">Admin</span>
+          </a><!-- End Profile Iamge Icon -->
+
+          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+            <li class="dropdown-header">
+              </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            
+
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
+                <i class="bi bi-question-circle"></i>
+                <span>Need Help?</span>
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="index.html">
+                <i class="bi bi-box-arrow-right"></i>
+                <span>Sign Out</span>
+              </a>
+            </li>
+
+          </ul><!-- End Profile Dropdown Items -->
+        </li><!-- End Profile Nav -->
+
+      </ul>
+    </nav><!-- End Icons Navigation -->
+
+  </header><!-- End Header -->
+
+  <!-- ======= Sidebar ======= -->
+  <aside id="sidebar" class="sidebar">
+
+    <ul class="sidebar-nav" id="sidebar-nav">
+
+      <li class="nav-item">
+        <a class="nav-link " href="homepage.html">
+          <i class="bi bi-grid"></i>
+          <span>Dashboard</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
+
+      
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#icons-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-gem"></i><span>Repository</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="icons-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="allfilesnfolders.html">
+              <i class="bi bi-circle"></i><span>All Files & Folders</span>
+            </a>
+          </li>
+          <li>
+            <a href="filesonly.html">
+              <i class="bi bi-circle"></i><span>Files</span>
+            </a>
+          </li>
+          <li>
+            <a href="foldersonly.html">
+              <i class="bi bi-circle"></i><span>Folders</span>
+            </a>
+          </li>
+        </ul>
+      </li><!-- End Icons Nav -->
+
+      <li class="nav-heading">Pages</li>
+
+      
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="pages-faq.html">
+          <i class="bi bi-question-circle"></i>
+          <span>F.A.Q</span>
+        </a>
+      </li><!-- End F.A.Q Page Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="pages-contact.html">
+          <i class="bi bi-envelope"></i>
+          <span>Contact</span>
+        </a>
+      </li><!-- End Contact Page Nav -->
+
+
+    </ul>
+
+  </aside><!-- End Sidebar-->
+
+  <main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Frequently Asked Questions</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="homepage.html">Home</a></li>
+          <li class="breadcrumb-item">Pages</li>
+          <li class="breadcrumb-item active">Frequently Asked Questions</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section faq">
+      <div class="row">
+        <div class="col-lg-6">
+
+          <div class="card basic">
+            <div class="card-body">
+              <h5 class="card-title">Basic Questions</h5>
+
+              <div>
+                <h6>1. What is NAS?</h6>
+                <p>Answer: Network-Attached Storage (NAS) is a file-level storage system connected to a network, allowing multiple users and devices to access and share data from a centralized location. It's used for data storage, file sharing, and backup.</p>
+              </div>
+
+              <div class="pt-2">
+                <h6>2. What types of data can be stored on a NAS?</h6>
+                <p>Answer: NAS can store various types of data, including documents, photos, videos, music, and system backups. It can also serve as a media server or for running applications.</p>
+              </div>
+
+              <div class="pt-2">
+                <h6>3. Is NAS secure?</h6>
+                <p>Answer: NAS devices can be secured with various features, including user authentication, encryption, and access controls. It is important to configure these security settings to protect your data from unauthorized access.</p>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- F.A.Q Group 1 -->
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Hardware and Software</h5>
+
+              <div class="accordion accordion-flush" id="faq-group-1">
+
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" data-bs-target="#faqsOne-1" type="button" data-bs-toggle="collapse">
+                      What are the recommended hardware requirements for setting up a NAS for a small business environment?
+                    </button>
+                  </h2>
+                  <div id="faqsOne-1" class="accordion-collapse collapse" data-bs-parent="#faq-group-1">
+                    <div class="accordion-body">
+                      The recommended hardware for a small business NAS setup includes a multi-core processor (Intel or AMD), at least 4-8GB of RAM, multiple gigabit Ethernet ports, support for RAID, and enough drive bays to accommodate current and future storage needs. It should also have robust cooling and power supply
+                    </div>
+                  </div>
+                </div>
+
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" data-bs-target="#faqsOne-2" type="button" data-bs-toggle="collapse">
+                      Can NAS be used for media streaming?
+                    </button>
+                  </h2>
+                  <div id="faqsOne-2" class="accordion-collapse collapse" data-bs-parent="#faq-group-1">
+                    <div class="accordion-body">
+                      Yes, many NAS devices support media streaming and can act as media servers for streaming videos, music, and photos to compatible devices like smart TVs, media players, and smartphones.<br> With NexaTech, Plex media has already been installed for you to stream media. 
+                    </div>
+                  </div>
+                </div>
+
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" data-bs-target="#faqsOne-3" type="button" data-bs-toggle="collapse">
+                      How do you configure RAID on a NAS during the initial setup?
+                    </button>
+                  </h2>
+                  <div id="faqsOne-3" class="accordion-collapse collapse" data-bs-parent="#faq-group-1">
+                    <div class="accordion-body">
+                      During the initial setup, access the NAS management interface, navigate to the storage settings, select the disks to include in the RAID array, choose the desired RAID level (e.g., RAID 1, 5, 6, or 10), and follow the prompts to configure and initialize the RAID array.<br>NasTech users do not have to worry about this as it is already implemented by default.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" data-bs-target="#faqsOne-4" type="button" data-bs-toggle="collapse">
+                      What security measures should be implemented on a NAS to protect data and access?
+                    </button>
+                  </h2>
+                  <div id="faqsOne-4" class="accordion-collapse collapse" data-bs-parent="#faq-group-1">
+                    <div class="accordion-body">
+                      Implement strong password policies, enable two-factor authentication, use encrypted connections (SSL/TLS, VPN), set up firewalls and access controls, and regularly update the NAS firmware and software to protect against vulnerabilities.<br>NasTech has these enabled by default.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" data-bs-target="#faqsOne-5" type="button" data-bs-toggle="collapse">
+                      What are the best practices for maintaining and updating NAS firmware and software?
+                    </button>
+                  </h2>
+                  <div id="faqsOne-5" class="accordion-collapse collapse" data-bs-parent="#faq-group-1">
+                    <div class="accordion-body">
+                      Regularly check for and apply firmware and software updates from the Updates and Management Settings, schedule maintenance windows to minimize downtime, and back up important data before performing updates.
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+          </div><!-- End F.A.Q Group 1 -->
+
+        </div>
+
+        <div class="col-lg-6">
+
+          <!-- F.A.Q Group 2 -->
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">NAS Works</h5>
+
+              <div class="accordion accordion-flush" id="faq-group-2">
+
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" data-bs-target="#faqsTwo-1" type="button" data-bs-toggle="collapse">
+                      How does NAS handle large amounts of data and high throughput requirements?
+                    </button>
+                  </h2>
+                  <div id="faqsTwo-1" class="accordion-collapse collapse" data-bs-parent="#faq-group-2">
+                    <div class="accordion-body">
+                      High-end NAS systems like NexaTech use multiple gigabit or 10-gigabit Ethernet ports, and advanced caching mechanisms to handle large data volumes and high throughput. They may also use RAID configurations to distribute and protect data across multiple drives.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" data-bs-target="#faqsTwo-2" type="button" data-bs-toggle="collapse">
+                      How can NAS be integrated into a virtualized environment?
+                    </button>
+                  </h2>
+                  <div id="faqsTwo-2" class="accordion-collapse collapse" data-bs-parent="#faq-group-2">
+                    <div class="accordion-body">
+                      NAS can be integrated into virtualized environments by connecting to hypervisors like VMware or Hyper-V. NexaTech can provide shared storage for virtual machines (VMs), support for VM snapshots, and enable features like Storage vMotion. It's essential to configure the NAS with proper performance and capacity planning to meet the needs of the virtualized workloads.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" data-bs-target="#faqsTwo-3" type="button" data-bs-toggle="collapse">
+                      How can I monitor and manage NAS health and performance?
+                    </button>
+                  </h2>
+                  <div id="faqsTwo-3" class="accordion-collapse collapse" data-bs-parent="#faq-group-2">
+                    <div class="accordion-body">
+                      NAS systems like NexaTech often come with built-in management tools and dashboards for monitoring health and performance. Key metrics to monitor include:
+
+<br>Disk health: Check for drive failures or warnings.
+<br>Network performance: Monitor throughput and latency.
+<br>System logs: Review for errors and alerts.
+<br>Storage utilization: Keep track of available space and capacity planning.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" data-bs-target="#faqsTwo-4" type="button" data-bs-toggle="collapse">
+                      What is NAS clustering, and when should it be used?
+                    </button>
+                  </h2>
+                  <div id="faqsTwo-4" class="accordion-collapse collapse" data-bs-parent="#faq-group-2">
+                    <div class="accordion-body">
+                      NAS clustering involves combining multiple NAS units into a single logical entity to improve performance, provide high availability, and ensure load balancing. It is typically used in high-demand environments requiring continuous uptime and scalability.
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+          </div><!-- End F.A.Q Group 2 -->
+
+          <!-- F.A.Q Group 3 -->
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">NAS Usage</h5>
+
+              <div class="accordion accordion-flush" id="faq-group-3">
+
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" data-bs-target="#faqsThree-1" type="button" data-bs-toggle="collapse">
+                      How do I set up user accounts and permissions on a NAS?
+                    </button>
+                  </h2>
+                  <div id="faqsThree-1" class="accordion-collapse collapse" data-bs-parent="#faq-group-3">
+                    <div class="accordion-body">
+                      Log in to the NAS web interface.<br>
+Go to the user management section.<br>
+Create new user accounts by providing necessary details like username, password, and email.
+<br>Assign users to groups and set permissions for each group or individual user to control access to shared folders.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" data-bs-target="#faqsThree-2" type="button" data-bs-toggle="collapse">
+                      How do I configure notifications and alerts on my NAS?
+                    </button>
+                  </h2>
+                  <div id="faqsThree-2" class="accordion-collapse collapse" data-bs-parent="#faq-group-3">
+                    <div class="accordion-body">
+                      Log in to the NAS web interface.<br>
+Navigate to the notification or alert settings.<br>
+Set up notification methods (e.g., email, SMS) and configure alert triggers (e.g., disk failure, high temperature).
+<br>Test the notifications to ensure they are working as expected.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" data-bs-target="#faqsThree-3" type="button" data-bs-toggle="collapse">
+                      How do you enable and configure SMB/CIFS shares on a NAS?
+                    </button>
+                  </h2>
+                  <div id="faqsThree-3" class="accordion-collapse collapse" data-bs-parent="#faq-group-3">
+                    <div class="accordion-body">
+                      Access the NAS management interface, navigate to the file sharing or services section, and enable the SMB/CIFS service. Create shared folders, set the SMB permissions (user/group access levels), and configure any additional settings like guest access or encryption. Save the settings and verify access from client devices.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" data-bs-target="#faqsThree-4" type="button" data-bs-toggle="collapse">
+                      How can you set up and manage SMB share access permissions and ACLs (Access Control Lists)?
+                    </button>
+                  </h2>
+                  <div id="faqsThree-4" class="accordion-collapse collapse" data-bs-parent="#faq-group-3">
+                    <div class="accordion-body">
+                      In the NAS management interface, navigate to the shared folder permissions settings. Set basic permissions for users and groups, and configure ACLs for granular control over file and folder access. Apply read/write/execute permissions as needed and regularly review and update ACLs to ensure security and proper access control.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" data-bs-target="#faqsThree-5" type="button" data-bs-toggle="collapse">
+                      How can you troubleshoot common issues with SMB shares, such as connectivity and permission problems?
+                    </button>
+                  </h2>
+                  <div id="faqsThree-5" class="accordion-collapse collapse" data-bs-parent="#faq-group-3">
+                    <div class="accordion-body">
+                      To troubleshoot SMB issues, ensure the SMB service is enabled on the NAS and the correct SMB version is being used. Check network connectivity between the client and NAS, verify user permissions and access rights, and inspect logs for error messages. Use _ssh tools like ping, traceroute, and smbclient to diagnose connectivity problems.
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+          </div><!-- End F.A.Q Group 3 -->
+
+        </div>
+
+      </div>
+    </section>
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer">
+    <div class="copyright">
+      &copy; Copyright <strong><span>NexaTech</span></strong>. All Rights Reserved
+    </div>
+    <div class="credits">
+      
+      Designed by NexaTech
+    </div>
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/chart.js/chart.umd.js"></script>
+  <script src="assets/vendor/echarts/echarts.min.js"></script>
+  <script src="assets/vendor/quill/quill.js"></script>
+  <script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
+  <script src="assets/vendor/tinymce/tinymce.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>
