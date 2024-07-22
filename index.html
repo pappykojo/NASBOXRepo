@@ -141,10 +141,10 @@
           const user = data.users.find(user => user.username === username);
   
           if (user && user.password === password) {
-            alert('Login successful');
+           
             window.location.href = 'homepage.html'; // Redirect to homepage.html
           } else {
-            alert('Invalid username or password');
+          
             window.location.href = 'pages-wrongpassword.html'; // Redirect to pages-wrongpassword.html
           }
         } catch (error) {
