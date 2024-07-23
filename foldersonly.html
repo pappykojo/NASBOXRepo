@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Folders and Contents - NexaTech Bootstrap Template</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/quill/quill.snow.css" rel="stylesheet">
+  <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
+  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+  <style>
+    .nested {
+        list-style-type: none;
+        margin-left: 20px;
+    }
+    .folder {
+        cursor: pointer;
+    }
+  </style>
+ 
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="header fixed-top d-flex align-items-center">
+
+    <div class="d-flex align-items-center justify-content-between">
+      <a href="homepage.html" class="logo d-flex align-items-center">
+        <img src="assets/img/logo.png" alt="">
+        <span class="d-none d-lg-block">NexaTech</span>
+      </a>
+      <i class="bi bi-list toggle-sidebar-btn"></i>
+    </div><!-- End Logo -->
+
+    <nav class="header-nav ms-auto">
+      <ul class="d-flex align-items-center">
+        <li class="nav-item dropdown pe-3">
+          <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+            <img src="assets/img/profile-img.png" alt="Profile" class="rounded-circle">
+            <span class="d-none d-md-block dropdown-toggle ps-2">Admin</span>
+          </a><!-- End Profile Image Icon -->
+
+          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
+                <i class="bi bi-question-circle"></i>
+                <span>Need Help?</span>
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="index.html">
+                <i class="bi bi-box-arrow-right"></i>
+                <span>Sign Out</span>
+              </a>
+            </li>
+          </ul><!-- End Profile Dropdown Items -->
+        </li><!-- End Profile Nav -->
+      </ul>
+    </nav><!-- End Icons Navigation -->
+
+  </header><!-- End Header -->
+
+  <!-- ======= Sidebar ======= -->
+  <aside id="sidebar" class="sidebar">
+    <ul class="sidebar-nav" id="sidebar-nav">
+      <li class="nav-item">
+        <a class="nav-link " href="homepage.html">
+          <i class="bi bi-grid"></i>
+          <span>Dashboard</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#icons-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-gem"></i><span>Repository</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="icons-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="allfilesnfolders.html">
+              <i class="bi bi-circle"></i><span>All Files & Folders</span>
+            </a>
+          </li>
+          <li>
+            <a href="filesonly.html">
+              <i class="bi bi-circle"></i><span>Files</span>
+            </a>
+          </li>
+          <li>
+            <a href="foldersonly.html">
+              <i class="bi bi-circle"></i><span>Folders</span>
+            </a>
+          </li>
+        </ul>
+      </li><!-- End Icons Nav -->
+
+      <li class="nav-heading">Pages</li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="pages-faq.html">
+          <i class="bi bi-question-circle"></i>
+          <span>F.A.Q</span>
+        </a>
+      </li><!-- End F.A.Q Page Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="pages-contact.html">
+          <i class="bi bi-envelope"></i>
+          <span>Contact</span>
+        </a>
+      </li><!-- End Contact Page Nav -->
+    </ul>
+  </aside><!-- End Sidebar-->
+
+  <main id="main" class="main">
+    <div class="pagetitle">
+      <h1>Folders</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="homepage.html">Home</a></li>
+          <li class="breadcrumb-item">Pages</li>
+          <li class="breadcrumb-item active">Folders</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Folders and Their Contents</h5>
+              <ul id="folderList"></ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      const ACCESS_TOKEN = 'ya29.a0AXooCgt4P6p6kmwvVGzvF41gwOf4-J3XoRQqKhh_g65G_vKK4qnTSUFE93cQoPslTF4NYDvisFqdEuVXsAySpDnX8NiWh0e1F0UYjLsHRFs6epBYIhGSEUc1RF87iz0GjSU5H60g7zqaema82jFvbJ7qHPQ1YQv0wPynaCgYKAQ4SARISFQHGX2MimYC815HlawwA-WWnaTahsQ0171'; // Replace with your actual access token
+      const folderListElement = document.getElementById('folderList');
+  
+      function listFolders(path = '', parentElement = folderListElement) {
+        console.log(`Fetching folders and contents from path: ${path || 'root'}`);
+        const query = `'${path || 'root'}' in parents and trashed=false`;
+        const url = `https://www.googleapis.com/drive/v3/files?q=${encodeURIComponent(query)}&fields=files(id,name,mimeType,webViewLink,parents)&includeItemsFromAllDrives=true&supportsAllDrives=true`;
+  
+        console.log('Request URL:', url);
+        fetch(url, {
+          headers: {
+            'Authorization': `Bearer ${ACCESS_TOKEN}`
+          }
+        })
+        .then(response => {
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+          return response.json();
+        })
+        .then(data => {
+          console.log('API Response:', data);
+          if (!data || !data.files) {
+            console.error('No files found or invalid response format.');
+            parentElement.textContent = 'No folders found or invalid response format.';
+            return;
+          }
+  
+          const files = data.files;
+          parentElement.innerHTML = ''; // Clear previous list
+  
+          const folders = files.filter(file => file.mimeType === 'application/vnd.google-apps.folder');
+          const filesInFolders = files.filter(file => file.mimeType !== 'application/vnd.google-apps.folder' && file.parents.includes(path));
+  
+          if (folders.length > 0) {
+            folders.sort((a, b) => a.name.localeCompare(b.name));
+            folders.forEach(folder => {
+              const listItem = document.createElement('li');
+              const link = document.createElement('a');
+              link.textContent = folder.name;
+              link.href = folder.webViewLink;
+              link.target = '_blank'; // Open link in a new tab
+  
+              listItem.classList.add('folder');
+              link.addEventListener('click', (e) => {
+                e.preventDefault();
+                if (listItem.querySelector('ul')) {
+                  listItem.querySelector('ul').classList.toggle('hidden');
+                } else {
+                  const newNestedList = document.createElement('ul');
+                  newNestedList.classList.add('nested');
+                  listFolders(folder.id, newNestedList);
+                  listItem.appendChild(newNestedList);
+                }
+              });
+  
+              listItem.appendChild(link);
+              parentElement.appendChild(listItem);
+            });
+          }
+  
+          // Include files in the current folder
+          if (filesInFolders.length > 0) {
+            filesInFolders.forEach(file => {
+              const listItem = document.createElement('li');
+              const link = document.createElement('a');
+              link.textContent = file.name;
+              link.href = file.webViewLink;
+              link.target = '_blank'; // Open link in a new tab
+  
+              listItem.classList.add('file');
+              listItem.appendChild(link);
+              parentElement.appendChild(listItem);
+            });
+          }
+  
+          if (path === '' && folders.length === 0) {
+            const listItem = document.createElement('li');
+            listItem.textContent = 'No folders found.';
+            parentElement.appendChild(listItem);
+          }
+        })
+        .catch(error => {
+          console.error('Error fetching files:', error);
+          parentElement.textContent = `Error fetching files: ${error.message}. Please try again later.`;
+        });
+      }
+  
+      // Start fetching folders and their contents
+      listFolders();
+    </script>
+
+  </main><!-- End #main -->
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="assets/vendor/quill/quill.min.js"></script>
+  <script src="assets/vendor/tinymce/tinymce.min.js"></script>
+  <script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
+  <script src="assets/vendor/chart.js/chart.min.js"></script>
+  <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
+  <script src="assets/vendor/echarts/echarts.min.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>
