@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>NexaTech Repository | Files</title>
+  <title> NexaTech Repository | Files </title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -213,64 +213,46 @@
     </section>
 
     <script>
-      const ACCESS_TOKEN = 'ya29.a0AXooCgt4P6p6kmwvVGzvF41gwOf4-J3XoRQqKhh_g65G_vKK4qnTSUFE93cQoPslTF4NYDvisFqdEuVXsAySpDnX8NiWh0e1F0UYjLsHRFs6epBYIhGSEUc1RF87iz0GjSU5H60g7zqaema82jFvbJ7qHPQ1YQv0wPynaCgYKAQ4SARISFQHGX2MimYC815HlawwA-WWnaTahsQ0171'; // Replace with your actual access token
-      const fileListElement = document.getElementById('fileList');
-    
-      function listStandaloneFiles() {
-        console.log('Fetching standalone files');
-        const url = `https://www.googleapis.com/drive/v3/files?q='root' in parents and trashed=false and mimeType!='application/vnd.google-apps.folder'&fields=files(id,name,webViewLink)`;
-    
-        console.log('Request URL:', url);
-        fetch(url, {
-          headers: {
-            'Authorization': `Bearer ${ACCESS_TOKEN}`
+      document.addEventListener('DOMContentLoaded', (event) => {
+          const repoOwner = 'nasbox';
+          const repoName = 'nasbox.github.io';
+          const branchName = 'FileRepo';
+
+          const fileListElement = document.getElementById('fileList');
+
+          function fetchAndDisplayRootFiles() {
+              fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/contents/?ref=${branchName}`)
+                  .then(response => {
+                      if (!response.ok) {
+                          throw new Error('Network response was not ok ' + response.statusText);
+                      }
+                      return response.json();
+                  })
+                  .then(data => {
+                      // Sort files by name
+                      data.sort((a, b) => a.name.localeCompare(b.name));
+
+                      data.forEach((item) => {
+                          if (item.type === 'file') {
+                              const listItem = document.createElement('li');
+                              const link = document.createElement('a');
+                              link.textContent = `${item.name}`;
+                              link.href = item.html_url;
+                              listItem.classList.add('file');
+                              listItem.appendChild(link);
+                              fileListElement.appendChild(listItem);
+                          }
+                      });
+                  })
+                  .catch(error => {
+                      console.error('Error fetching repository contents:', error);
+                      fileListElement.textContent = 'Error fetching repository contents. Please try again later.';
+                  });
           }
-        })
-        .then(response => {
-          if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-          }
-          return response.json();
-        })
-        .then(data => {
-          console.log('API Response:', data);
-          if (!data || !data.files) {
-            console.error('No files found or invalid response format.');
-            fileListElement.textContent = 'No files found or invalid response format.';
-            return;
-          }
-    
-          const files = data.files;
-          fileListElement.innerHTML = ''; // Clear previous list
-    
-          if (files.length > 0) {
-            files.sort((a, b) => a.name.localeCompare(b.name));
-            files.forEach(file => {
-              const listItem = document.createElement('li');
-              const link = document.createElement('a');
-              link.textContent = file.name;
-              link.href = file.webViewLink;
-              link.target = '_blank'; // Open link in a new tab
-              listItem.classList.add('file');
-              listItem.appendChild(link);
-              fileListElement.appendChild(listItem);
-            });
-          } else {
-            const listItem = document.createElement('li');
-            listItem.textContent = 'No standalone files found.';
-            fileListElement.appendChild(listItem);
-          }
-        })
-        .catch(error => {
-          console.error('Error fetching files:', error);
-          fileListElement.textContent = `Error fetching files: ${error.message}. Please try again later.`;
-        });
-      }
-    
-      // Start fetching standalone files
-      listStandaloneFiles();
+
+          fetchAndDisplayRootFiles(); // Start fetching files from the root path
+      });
     </script>
-    
 
   </main><!-- End #main -->
 

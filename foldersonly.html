@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title> NexaTech Repository | Folders /title>
+  <title>NexaTech Repository | Folders </title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -31,12 +31,13 @@
   <style>
     .nested {
         list-style-type: none;
+        display: none;
         margin-left: 20px;
     }
     .folder {
         cursor: pointer;
     }
-  </style>
+</style>
  
 </head>
 
@@ -53,15 +54,61 @@
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
 
+    <div class="search-bar">
+      <form class="search-form d-flex align-items-center" method="POST" action="#">
+        <input type="text" name="query" placeholder="Search" title="Enter search keyword" id="searchInput">
+        <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+      </form>
+    </div><!-- End Search Bar -->
+    <script>
+      document.querySelector('.search-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+        const query = document.querySelector('#searchInput').value.toLowerCase();
+        const content = document.body.innerHTML;
+    
+        // Remove previous highlights
+        document.body.innerHTML = content.replace(/<mark class="highlight">|<\/mark>/g, '');
+    
+        if (query) {
+          const regex = new RegExp(`(${query})`, 'gi');
+          document.body.innerHTML = document.body.innerHTML.replace(regex, '<mark class="highlight">$1</mark>');
+        }
+      });
+    </script>
+    
+    <style>
+      mark.highlight {
+        background-color: rgba(255, 255, 0, 0.479);
+        color: black;
+      }
+    </style>
+
     <nav class="header-nav ms-auto">
       <ul class="d-flex align-items-center">
+
+        <li class="nav-item d-block d-lg-none">
+          <a class="nav-link nav-icon search-bar-toggle " href="#">
+            <i class="bi bi-search"></i>
+          </a>
+        </li><!-- End Search Icon-->
+
+        
         <li class="nav-item dropdown pe-3">
+
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
             <img src="assets/img/profile-img.png" alt="Profile" class="rounded-circle">
             <span class="d-none d-md-block dropdown-toggle ps-2">Admin</span>
-          </a><!-- End Profile Image Icon -->
+          </a><!-- End Profile Iamge Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+            <li class="dropdown-header">
+              </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            
+
             <li>
               <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
                 <i class="bi bi-question-circle"></i>
@@ -71,14 +118,17 @@
             <li>
               <hr class="dropdown-divider">
             </li>
+
             <li>
               <a class="dropdown-item d-flex align-items-center" href="index.html">
                 <i class="bi bi-box-arrow-right"></i>
                 <span>Sign Out</span>
               </a>
             </li>
+
           </ul><!-- End Profile Dropdown Items -->
         </li><!-- End Profile Nav -->
+
       </ul>
     </nav><!-- End Icons Navigation -->
 
@@ -86,13 +136,17 @@
 
   <!-- ======= Sidebar ======= -->
   <aside id="sidebar" class="sidebar">
+
     <ul class="sidebar-nav" id="sidebar-nav">
+
       <li class="nav-item">
         <a class="nav-link " href="homepage.html">
           <i class="bi bi-grid"></i>
           <span>Dashboard</span>
         </a>
       </li><!-- End Dashboard Nav -->
+
+      
 
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#icons-nav" data-bs-toggle="collapse" href="#">
@@ -118,6 +172,9 @@
       </li><!-- End Icons Nav -->
 
       <li class="nav-heading">Pages</li>
+
+      
+
       <li class="nav-item">
         <a class="nav-link collapsed" href="pages-faq.html">
           <i class="bi bi-question-circle"></i>
@@ -131,12 +188,24 @@
           <span>Contact</span>
         </a>
       </li><!-- End Contact Page Nav -->
+
+      
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="users.html">
+          <i class="bi bi-people-fill"></i>
+          <span>Users</span>
+        </a>
+      </li><!-- End Blank Page Nav -->
+
     </ul>
+
   </aside><!-- End Sidebar-->
 
   <main id="main" class="main">
+
     <div class="pagetitle">
-      <h1>Folders</h1>
+      <h1>Blank Page</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="homepage.html">Home</a></li>
@@ -153,6 +222,7 @@
             <div class="card-body">
               <h5 class="card-title">Folders</h5>
               <ul id="folderList"></ul>
+              <p></p>
             </div>
           </div>
         </div>
@@ -160,109 +230,92 @@
     </section>
 
     <script>
-      const ACCESS_TOKEN = 'ya29.a0AXooCgt4P6p6kmwvVGzvF41gwOf4-J3XoRQqKhh_g65G_vKK4qnTSUFE93cQoPslTF4NYDvisFqdEuVXsAySpDnX8NiWh0e1F0UYjLsHRFs6epBYIhGSEUc1RF87iz0GjSU5H60g7zqaema82jFvbJ7qHPQ1YQv0wPynaCgYKAQ4SARISFQHGX2MimYC815HlawwA-WWnaTahsQ0171'; // Replace with your actual access token
-      const folderListElement = document.getElementById('folderList');
-  
-      function listFolders(path = '', parentElement = folderListElement) {
-        console.log(`Fetching folders and contents from path: ${path || 'root'}`);
-        const query = `'${path || 'root'}' in parents and trashed=false`;
-        const url = `https://www.googleapis.com/drive/v3/files?q=${encodeURIComponent(query)}&fields=files(id,name,mimeType,webViewLink,parents)&includeItemsFromAllDrives=true&supportsAllDrives=true`;
-  
-        console.log('Request URL:', url);
-        fetch(url, {
-          headers: {
-            'Authorization': `Bearer ${ACCESS_TOKEN}`
+      document.addEventListener('DOMContentLoaded', (event) => {
+          const repoOwner = 'nasbox';
+          const repoName = 'nasbox.github.io';
+          const branchName = 'FileRepo';
+
+          const folderListElement = document.getElementById('folderList');
+
+          function fetchAndDisplayContents(path = '', parentElement) {
+              fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/contents/${path}?ref=${branchName}`)
+                  .then(response => {
+                      if (!response.ok) {
+                          throw new Error('Network response was not ok ' + response.statusText);
+                      }
+                      return response.json();
+                  })
+                  .then(data => {
+                      // Sort files and folders by name
+                      data.sort((a, b) => a.name.localeCompare(b.name));
+
+                      data.forEach((item) => {
+                          if (item.type === 'dir') {
+                              const listItem = document.createElement('li');
+                              const link = document.createElement('a');
+                              link.textContent = `${item.name}`;
+                              link.href = '#';
+                              listItem.classList.add('folder');
+                              listItem.appendChild(link);
+
+                              const newNestedList = document.createElement('ul');
+                              newNestedList.classList.add('nested');
+                              listItem.appendChild(newNestedList);
+
+                              link.addEventListener('click', (e) => {
+                                  e.preventDefault();
+                                  if (newNestedList.innerHTML === '') {
+                                      fetchAndDisplayContents(item.path, newNestedList);
+                                  }
+                                  newNestedList.style.display = newNestedList.style.display === 'none' ? 'block' : 'none';
+                              });
+
+                              parentElement.appendChild(listItem);
+                          } else if (item.type === 'file' && path !== '') {
+                              const listItem = document.createElement('li');
+                              const link = document.createElement('a');
+                              link.textContent = `${item.name}`;
+                              link.href = item.html_url;
+                              listItem.classList.add('file');
+                              listItem.appendChild(link);
+                              parentElement.appendChild(listItem);
+                          }
+                      });
+                  })
+                  .catch(error => {
+                      console.error('Error fetching repository contents:', error);
+                      parentElement.textContent = 'Error fetching repository contents. Please try again later.';
+                  });
           }
-        })
-        .then(response => {
-          if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-          }
-          return response.json();
-        })
-        .then(data => {
-          console.log('API Response:', data);
-          if (!data || !data.files) {
-            console.error('No files found or invalid response format.');
-            parentElement.textContent = 'No folders found or invalid response format.';
-            return;
-          }
-  
-          const files = data.files;
-          parentElement.innerHTML = ''; // Clear previous list
-  
-          const folders = files.filter(file => file.mimeType === 'application/vnd.google-apps.folder');
-          const filesInFolders = files.filter(file => file.mimeType !== 'application/vnd.google-apps.folder' && file.parents.includes(path));
-  
-          if (folders.length > 0) {
-            folders.sort((a, b) => a.name.localeCompare(b.name));
-            folders.forEach(folder => {
-              const listItem = document.createElement('li');
-              const link = document.createElement('a');
-              link.textContent = folder.name;
-              link.href = folder.webViewLink;
-              link.target = '_blank'; // Open link in a new tab
-  
-              listItem.classList.add('folder');
-              link.addEventListener('click', (e) => {
-                e.preventDefault();
-                if (listItem.querySelector('ul')) {
-                  listItem.querySelector('ul').classList.toggle('hidden');
-                } else {
-                  const newNestedList = document.createElement('ul');
-                  newNestedList.classList.add('nested');
-                  listFolders(folder.id, newNestedList);
-                  listItem.appendChild(newNestedList);
-                }
-              });
-  
-              listItem.appendChild(link);
-              parentElement.appendChild(listItem);
-            });
-          }
-  
-          // Include files in the current folder
-          if (filesInFolders.length > 0) {
-            filesInFolders.forEach(file => {
-              const listItem = document.createElement('li');
-              const link = document.createElement('a');
-              link.textContent = file.name;
-              link.href = file.webViewLink;
-              link.target = '_blank'; // Open link in a new tab
-  
-              listItem.classList.add('file');
-              listItem.appendChild(link);
-              parentElement.appendChild(listItem);
-            });
-          }
-  
-          if (path === '' && folders.length === 0) {
-            const listItem = document.createElement('li');
-            listItem.textContent = 'No folders found.';
-            parentElement.appendChild(listItem);
-          }
-        })
-        .catch(error => {
-          console.error('Error fetching files:', error);
-          parentElement.textContent = `Error fetching files: ${error.message}. Please try again later.`;
-        });
-      }
-  
-      // Start fetching folders and their contents
-      listFolders();
+
+          fetchAndDisplayContents('', folderListElement); // Start fetching from the root path
+      });
     </script>
 
   </main><!-- End #main -->
 
+  <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer">
+    <div class="copyright">
+      &copy; Copyright <strong><span>NexaTech</span></strong>. All Rights Reserved
+    </div>
+    <div class="credits">
+      
+      Designed by NexaTech
+    </div>
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
   <!-- Vendor JS Files -->
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
-  <script src="assets/vendor/quill/quill.min.js"></script>
-  <script src="assets/vendor/tinymce/tinymce.min.js"></script>
-  <script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
-  <script src="assets/vendor/chart.js/chart.min.js"></script>
   <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/chart.js/chart.umd.js"></script>
   <script src="assets/vendor/echarts/echarts.min.js"></script>
+  <script src="assets/vendor/quill/quill.js"></script>
+  <script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
+  <script src="assets/vendor/tinymce/tinymce.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>

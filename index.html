@@ -28,7 +28,7 @@
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
-  
+
   
 
 </head>
@@ -141,10 +141,10 @@
           const user = data.users.find(user => user.username === username);
   
           if (user && user.password === password) {
-            
+           
             window.location.href = 'homepage.html'; // Redirect to homepage.html
           } else {
-            
+          
             window.location.href = 'pages-wrongpassword.html'; // Redirect to pages-wrongpassword.html
           }
         } catch (error) {
